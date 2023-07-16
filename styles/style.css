@@ -1,0 +1,788 @@
+/* =========== META =========== */
+:root {
+  --primary: rgb(30, 30, 30);
+  --secondary: rgb(50, 50, 50);
+  --accent: white;
+  --accent_2: rgb(10, 155, 160);
+  --outline: 2px solid white;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position-x: 50%;
+  background-position-y: 80%;
+}
+
+body::-webkit-scrollbar{
+  display: block;
+}
+
+.empty-message {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-120%);
+  font-size: 80pt;
+  color: white;
+  white-space: nowrap;
+  padding: 20px;
+  outline: var(--outline);
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  
+}
+/* =========== FOOTER =========== */
+
+#footer {
+  /* display: grid;
+  grid-template-columns: 100px 100px 100px 100px;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  outline: var(--outline);
+  color: white;
+  padding: 10px 50px; */
+  opacity: 0;
+}
+
+/* =========== NAVBAR =========== */
+
+#navbar {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-bottom: var(--outline);
+  display: flex;
+  padding: 2em;
+  justify-content: left;
+}
+
+#navbar > a,
+#user-buttons > a {
+  font-weight: 800;
+  font-size: 2em;
+  text-decoration: none;
+  color: var(--accent);
+  transition: 300ms;
+  padding: 0 40px;
+}
+
+#navbar > a:hover,
+#user-buttons > a:hover {
+  color: var(--accent_2);
+}
+
+#navbar #user-buttons {
+  margin-left: auto;
+}
+
+/* =========== ACCOUNT PAGES =========== */
+
+#form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 70px;
+}
+
+#form-itself {
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: var(--outline);
+  color: white;
+  border-radius: 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-bottom: 50px;
+  width: 600px;
+}
+
+#form-itself > h1 {
+  font-size: 3em;
+  text-align: center;
+  margin-bottom: 0.2em;
+}
+
+#form-itself > hr {
+  width: 80%;
+  margin-bottom: 1em;
+}
+
+#form-itself > label {
+  width: 80%;
+  margin-top: 1em;
+  margin-bottom: 0.2em;
+}
+
+#form-itself > input {
+  width: 80%;
+  padding: 20px;
+  height: 1.5em;
+  border-radius: 10px;
+  border: none;
+  font-size: 1em;
+  font-weight: bold;
+  color: white;
+  background-color: var(--primary);
+  outline: var(--outline);
+}
+
+#form-itself > input:hover,
+#form-itself > input:focus {
+  background-color: rgb(40, 40, 40);
+}
+
+#form-itself > button {
+  outline: var(--outline);
+  width: 80%;
+  margin-top: 15px;
+  margin-bottom: 0.5em;
+  font-size: 20pt;
+  height: 2.5em;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--accent);
+  color: black;
+}
+
+#form-itself > button:hover {
+  background-color: var(--accent_2);
+}
+
+.failed {
+  outline: 2px solid red !important;
+}
+
+.empty-field::before {
+  content: "This field is required!";
+  color: red;
+  position: absolute;
+  right: 80px;
+}
+
+#login-underlabel-container {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#remember-me-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+#remember-me {
+  width: 2em;
+  height: 2em;
+}
+
+
+.invalid-email:before {
+  content: "Invalid Email!";
+  color: red;
+  position: absolute;
+  right: 80px;
+}
+
+.passwords-no-match:before {
+  content: "Passwords must match!";
+  color: red;
+  position: absolute;
+  right: 80px;
+}
+
+.user-taken:before {
+  content: "Username is taken!";
+  color: red;
+  position: absolute;
+  right: 80px;
+}
+
+.email-taken:before {
+  content: "Email is taken!";
+  color: red;
+  position: absolute;
+  right: 80px;
+}
+
+.account-error {
+  position: absolute;
+  top: 1em;
+  color: greenyellow;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    top: 3em;
+  }
+  20% {
+    opacity: 100%;
+    top: 5.5em;
+  }
+  70% {
+    opacity: 100%;
+    top: 5.5em;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.general-error {
+  opacity: 0;
+  font-size: 16pt;
+  position: absolute;
+  top: 5.5em;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: rgb(10, 50, 10);
+  padding: 10px;
+  border-radius: 10px;
+  outline: 2px greenyellow solid;
+  color: greenyellow;
+  animation: fadein 5s;
+}
+
+.wrong-email:before {
+  content: "Wrong email!";
+  color: red;
+  position: absolute;
+  right: 80px;
+}
+
+.wrong-password:before {
+  content: "Wrong password!";
+  color: red;
+  position: absolute;
+  right: 80px;
+}
+
+/* =========== ADD RATING PAGE =========== */
+
+#search-box {
+  margin-top: 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#search-text {
+  background-color: rgb(20, 20, 20);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  outline: var(--outline);
+  font-size: 20pt;
+  width: 30%;
+  padding: 20px;
+}
+
+#search-results {
+  margin: 50px 0;
+  display: grid;
+  grid-template-columns: 4fr 4fr 4fr 4fr;
+  gap: 20px;
+  width: 75%;
+}
+
+.search-result {
+  position: relative;
+  width: 320px;
+  padding: 10px 10px;
+  background-color: white;
+  outline: 5px black solid;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 20px;
+}
+
+.search-result::after {
+  content: "Select";
+  font-size: 20pt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: absolute;
+  background-color: black;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: 400ms;
+  border-radius: 20px;
+}
+
+.search-result:hover::after {
+  opacity: 80%;
+}
+
+.search-result > img {
+  box-shadow: 0px 0px 5px;
+  width: 300px;
+  height: 445px;
+  border-radius: 20px;
+}
+
+.search-result > h4 {
+  margin: 10px 0;
+  color: black;
+  font-size: 20pt;
+}
+
+.search-result > p {
+  margin-top: auto;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  font-size: 12pt;
+}
+
+/* =========== ADD RATING PAGE (SELECTED) =========== */
+
+#rate-container {
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border: var(--outline);
+  color: white;
+  border-radius: 10px;
+  align-items: center;
+  display: flex;
+  padding: 50px;
+  margin: 50px 200px;
+}
+
+#plot {
+  display: flex;
+  align-items: flex-start;
+}
+
+#plot-div {
+  grid-column: 1/-1;
+  overflow-y: auto;
+}
+
+#selected-result {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+#selected-result::after {
+  content: "Change" !important;
+}
+
+#rate-form-container {
+  width: 100%;
+  position: relative;
+}
+
+#rate-form {
+  display: flex;
+  flex-direction: column;
+  font-size: 20pt;
+  padding: 0 50px;
+  height: 100% !important;
+}
+
+#rate-info {
+  margin:15px 0;
+  height: 40%;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 2em 2em;
+}
+
+#rate-info > div {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+#rate-info > div * {
+  margin: 0;
+}
+
+#rate-info > div > h5 {
+  height: 100%;
+  white-space: nowrap;
+}
+
+#rate-info > div > p {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.hero {
+  font-weight: 900;
+  font-size: 1vw;
+  color: var(--accent_2);
+}
+
+#rate-form > h4,
+#rating-verdict > h4 {
+  font-size: 1.5em;
+  text-align: center;
+  margin: 0;
+}
+
+#rate-form > hr {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#rating-verdict {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: end;
+  align-items: start;
+}
+
+#verdict-itself-container{
+  display: flex;
+  flex-direction: row;
+  margin-top: auto;
+  margin-bottom: auto;
+  gap:20px;
+}
+
+#verdict-comment {
+  background-color: rgb(15, 15, 15);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  outline: var(--outline);
+  height: 130px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 700px;
+  font-size: 15pt;
+  padding: 20px;
+  resize: none;
+}
+
+#rating {
+  position: relative;
+  text-align: center;
+  font-size: 1em;
+  outline: 1px solid white;
+  border-radius: 20px;
+  width: 280px;
+  height: 130px;
+  line-height: 130px;
+  background-color: rgb(0, 0, 0);
+  cursor:row-resize;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.failed::before {
+  content: "You must select a rating!";
+  color: red;
+  position: absolute;
+  top: -75px;
+  font-size: 12pt;
+}
+
+#buttons-container{
+  display: flex;
+  gap:20px;
+}
+
+#add-rating-button {
+  outline: 2px black solid;
+  width: 80%;
+  font-size: 20pt;
+  height: 2.5em;
+  border-radius: 10px;
+  border: none;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#add-rating-button:hover {
+  background-color: black;
+  color: white;
+  outline: var(--outline);
+}
+
+#remove-rating-button {
+  outline: var(--outline);
+  width: 15%;
+  font-size: 20pt;
+  height: 2.5em;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--accent);
+  color: white;
+  background-color: rgb(255, 0, 0);
+  cursor: pointer;
+}
+
+#remove-rating-button:hover {
+  color: rgb(255, 0, 0);
+  background-color: white;
+}
+#user-error {
+  position: absolute;
+  bottom: 245px;
+  left: 50%;
+  transform: translate(-50%);
+  color: red;
+  font-size: 1em;
+  font-weight: 100;
+}
+
+#user-guide {
+  position: absolute;
+  top: -30px;
+  left: -320px;
+  color: white;
+  font-size: 0.9em;
+  font-weight: 100;
+}
+
+/* =========== VIEW RATINGS PAGE =========== */
+
+#view-ratings-container {
+  display: flex;
+  flex-direction: column;
+  margin: 25px 400px;
+  margin-bottom: 100px;
+  color: white;
+}
+
+.view-ratings-rating {
+  position: relative;
+  display: grid;
+  grid-template-columns: 200px 600px 223px;
+  grid-column-gap: 20px;
+  grid-row-gap: 0;
+  grid-template-rows: 85px;
+  padding: 20px;
+  height: 338px;
+  outline: var(--outline);
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(7px);
+  transition: 0.3s cubic-bezier(.92,.31,.6,1.47);
+}
+
+.view-ratings-rating:hover {
+  background: rgb(0, 0, 0);
+  transition: 0.3s cubic-bezier(.92,.31,.6,1.47);
+  transform: scale(1.2);
+  z-index: 99;
+}
+
+.view-poster {
+  outline: rgb(117, 117, 117) solid 1px;
+  width: 200px;
+  height: auto;
+  max-height: 300px;
+  grid-row: 1/5;
+}
+
+.view-title {
+  margin: 0;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.view-genre {
+  font-weight: 600;
+  grid-column: 2/3;
+  margin: 20px 0;
+}
+
+.view-type {
+  font-weight: 400;
+  grid-column: 2/3;
+  text-transform: capitalize;
+  font-size: 1.1em;  
+  margin: 0 !important;
+  margin-top: 10px !important;
+}
+
+.view-imdb {
+  grid-column: 2/3;
+  margin: 0;
+}
+
+.view-raters {
+  margin: 0;
+  grid-row: 3/4;
+  overflow-y: auto;
+}
+
+.view-final-verdict-name {
+  grid-row: 1/2;
+  grid-column: 3/4;
+  font-size: 20pt;
+  text-align: center;
+  margin: 0;
+}
+
+.view-final-verdict-span {
+  position: relative;
+  grid-row: 2/4;
+  grid-column: 3/4;
+}
+
+.view-final-verdict {
+  text-align: center;
+  font-size: 50pt;
+  margin: 0;
+  position: relative;
+  font-weight: 900;
+}
+
+.view-final-verdict-comment {
+  color: var(--accent_2);
+  content: "";
+  position: absolute;
+  font-size: 1em;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#sort-selector {
+  background-color: rgba(0, 0, 0, 0.9);
+  outline: var(--outline);
+  position: absolute;
+  right: 100px;
+  top: 131px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 20pt;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#sort-selector > p {
+  margin: 10px;
+}
+
+#sort-selectors {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 20pt;
+}
+
+.view-movies-rate-movie-button {
+  grid-column: 3/4;
+  background-color: rgb(30, 30, 30);
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  border-radius: 5px;
+  outline: 1px solid grey;
+  cursor: pointer;
+}
+
+.view-movies-rate-movie-button:hover {
+  background-color: rgb(100, 100, 100);
+}
+
+/* =========== PROFILE PAGE =========== */
+
+#profile-page-container {
+  background: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(7px);
+  border: var(--outline);
+  color: white;
+  border-radius: 10px;
+  margin: 20px 100px;
+}
+
+#profile-content {
+  display: grid;
+  grid-template-columns: 700px;
+  grid-template-rows: 3fr 3fr 3fr;
+  grid-column-gap: 20px;
+  padding: 20px;
+}
+
+#profile-content * {
+  margin: 0;
+}
+
+#profile-page-avatar-container{
+  grid-row: 1/2;
+  outline: var(--outline);
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+#profile-page-avatar{
+  height: 300px;
+  outline: var(--outline);
+}
+
+#profile-page-movie-list-container{
+  grid-column: 2/3;
+  grid-row: 1/4;
+  outline: var(--outline);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.profile-page-movie-block{
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  margin-bottom: 20px!important;
+}
+
+.profile-page-movie-list-rating{
+  grid-column: 2/3;
+  grid-row: 1/3;
+  text-align: center;
+  margin: auto !important;
+}
