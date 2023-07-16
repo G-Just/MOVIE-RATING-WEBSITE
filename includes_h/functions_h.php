@@ -148,7 +148,7 @@ function rateMovie($verdict, $title, $type, $year, $comment, $conn){
         header('location: ../view_ratings.php?error=content_rated');
     }
     else {
-        updateRating($verdict, $title, $comment, $conn);
+        updateRating($verdict, $title, $type, $year, $comment, $conn);
     }
 }
 
