@@ -1,11 +1,6 @@
 #TODO ===================================
 
 REFACTOR THE CODE TO MAKE IT MORE READABLE + MAKE MORE SENSE
-ADD REMEMBER ME CHECKBOX TO LOGIN WITH COOKIES :
-    1. Create a hash with time() function SHA256
-    2. Store the hash + create a identical cookie that expires in 3-7 days
-    3. Login --> before anything check for cookie and compare it to stored value if yes = auto login
-
 ADD TIMESTAMPS ON (PROFILE CREATION + RATING INSTANCE CREATION) *MIGHT BE USEFUL LATER
 ADD A COMMENT SYSTEM TO ADD MOVIE RATING
 DESIGN A PROFILE PAGE
@@ -20,6 +15,7 @@ VIEW RATINGS SORT
 MAKE VIEW RATINGS SYSTEM
 LOGIN SIGN-UP LOGOUT
 ADD RATING SYSTEM
+ADD REMEMBER ME CHECKBOX TO LOGIN WITH COOKIES
 
 
 #BUGS TO FIX ===================================
