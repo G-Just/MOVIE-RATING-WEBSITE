@@ -10,7 +10,7 @@ if (isset($_POST['submit'])){
     require 'database_handler_h.php';
     loginUser($email, $password, $conn);
     $cookie = $_COOKIE['remember'] ?? null;
-    if ($remember === 'on' && $cookie !== null){
+    if ($remember === 'on' && $cookie === null){
         setRememberCookie($conn);
     }
     if(!$remember){

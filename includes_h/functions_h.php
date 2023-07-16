@@ -252,7 +252,7 @@ function checkForRememberCookie($conn){
 function setRememberCookie($conn){
     $expires = time() + ((60*60*24) * 3);
     $token_key = hash('sha256', time());
-    $token_value = hash('sha256', 'Yuh');
+    $token_value = hash('sha256', 'Yuh@@');
     setcookie('remember', $token_key.':'.$token_value, $expires, '/');
     $sql = "INSERT INTO cookies (cookiesUserID, cookiesKey, cookiesValue) VALUES (?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
