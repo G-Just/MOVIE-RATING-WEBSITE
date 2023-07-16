@@ -25,10 +25,6 @@
 
         <div id='login-underlabel-container'>
             <label>Don't have an account? <a href="signup.php">Signup</a></label>
-            <div id='remember-me-container'>
-                <label for="remember-me">Keep me logged in</label>
-                <input type="checkbox" name="remember" id="remember-me"></input>
-            </div>
         </div>
         
     </form>
