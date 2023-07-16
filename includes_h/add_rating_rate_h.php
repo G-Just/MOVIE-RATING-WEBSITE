@@ -1,12 +1,10 @@
 <?php
 
-
-
 if (isset($_POST['submit'])){
 
-    require_once 'functions_h.php';
-    require_once 'database_handler_h.php';
-    
+    require 'functions_h.php';
+    require 'database_handler_h.php';
+
     $type = $_POST['type'];
     $title = $_POST['title'];
     $year = $_POST['year'];

@@ -94,7 +94,7 @@ function loginUser($email, $password, $conn){
 }
 
 function movieExistsCheck($title, $type, $year, $conn){
-    $sql = "SELECT * FROM movies WHERE moviesTitle = ? AND moviesType = ? AND moviesYear = ?";
+    $sql = "SELECT * FROM movies WHERE moviesTitle = ? AND moviesType = ? AND moviesYear = ?;";
     $stmt = mysqli_stmt_init($conn);
     databaseConnectionCheck($stmt, $sql);
     mysqli_stmt_bind_param($stmt, "ssi", $title, $type, $year);
@@ -110,7 +110,7 @@ function movieExistsCheck($title, $type, $year, $conn){
 }
 
 function updateRating($verdict, $title, $type, $year, $comment, $conn){
-    $movie = movieExistsCheck($title, $title, $type, $year, $conn);
+    $movie = movieExistsCheck($title, $type, $year, $conn);
     $sql = "UPDATE assocs SET assocsUsersVerdict = ?, assocsComment = ? WHERE assocsMoviesID = ? and assocsUsersID = ?;";
     $stmt = mysqli_stmt_init($conn);
     databaseConnectionCheck($stmt, $sql);
