@@ -44,3 +44,9 @@ if (current_error == 'rating_removed'){
     newDiv.appendChild(document.createTextNode('Rating has been removed !'))
     body[0].appendChild(newDiv)
 }
+if (current_error == 'already_logged_in'){
+    username = document.querySelector("[href='profile.php']").innerText
+    newDiv.setAttribute("class", "general-error")
+    newDiv.appendChild(document.createTextNode(`Welcome, ${username}!`))
+    body[0].appendChild(newDiv)
+}

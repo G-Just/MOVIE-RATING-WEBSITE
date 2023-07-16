@@ -4,4 +4,6 @@
 
 <?php include 'templates/navbar.php' ?>
 
+<?php print_r($_COOKIE); ?>
+
 <?php include 'templates/footer.php' ?>

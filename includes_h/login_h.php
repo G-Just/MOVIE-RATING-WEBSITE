@@ -6,10 +6,17 @@ if (isset($_POST['submit'])){
     $password = $_POST['password'];
     $remember = $_POST['remember'];
 
-    require_once 'functions_h.php';
-    require_once 'database_handler_h.php';
-
+    require 'functions_h.php';
+    require 'database_handler_h.php';
     loginUser($email, $password, $conn);
+    $cookie = $_COOKIE['remember'] ?? null;
+    if ($remember === 'on' && $cookie !== null){
+        setRememberCookie($conn);
+    }
+    if(!$remember){
+        removeRememberCookie($conn);
+    }
+    header('location: ../home.php?error=logged_in');
 }
 else{
     header('location: ../login.php');

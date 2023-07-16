@@ -35,4 +35,5 @@
 <?php if (isset($_SESSION['usersID'])){
     header('location: /home.php?error=already_logged_in');
     exit();
-}?>
+}
+?>

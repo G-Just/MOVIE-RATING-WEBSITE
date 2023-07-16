@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+SESSION_start();
 
 function databaseConnectionCheck($stmt, $sql){
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -87,11 +87,10 @@ function loginUser($email, $password, $conn){
         header('location: ../login.php?error=wrong-password');
         exit();
     }
-    session_start();
+    SESSION_start();
     $_SESSION['usersID'] = $user['usersID'];
     $_SESSION['usersUsername'] = $user['usersUsername'];
     $_SESSION['usersEmail'] = $user['usersEmail'];
-    header('location: ../home.php?error=logged_in');
 }
 
 function movieExistsCheck($title, $type, $year, $conn){
@@ -227,5 +226,50 @@ function deleteMovieRating($conn, $movieID, $userID){
         header('location: ../view_ratings.php?error=rating_removed');
         exit();
     }
+}
+
+function checkForRememberCookie($conn){
+    $cookie = $_COOKIE['remember'] ?? null;
+    if($cookie && strstr($cookie, ":")){
+        $parts = explode(":", $cookie);
+        $token_key = $parts[0];
+        $token_value = $parts[1];
+    }
+    else{
+        return false;
+    }
+    $sql = "SELECT * FROM cookies WHERE cookiesKey = ? AND cookiesValue = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    databaseConnectionCheck($stmt, $sql);
+    mysqli_stmt_bind_param($stmt, "ss", $token_key, $token_value);
+    mysqli_stmt_execute($stmt);
+    $result_data = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result_data);
+    mysqli_stmt_close($stmt);
+    return $row;
+}
+
+function setRememberCookie($conn){
+    $expires = time() + ((60*60*24) * 3);
+    $token_key = hash('sha256', time());
+    $token_value = hash('sha256', 'Yuh');
+    setcookie('remember', $token_key.':'.$token_value, $expires, '/');
+    $sql = "INSERT INTO cookies (cookiesUserID, cookiesKey, cookiesValue) VALUES (?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    databaseConnectionCheck($stmt, $sql);
+    mysqli_stmt_bind_param($stmt, "sss", $_SESSION['usersID'], $token_key, $token_value);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
+function removeRememberCookie($conn){
+    unset($_COOKIE['remember']); 
+    setcookie('remember', '', -1, '/');
+    $sql = "DELETE FROM cookies WHERE cookiesUserID = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    databaseConnectionCheck($stmt, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $_SESSION['usersID']);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
 }
 
