@@ -4,4 +4,6 @@
 
 <?php include 'templates/navbar.php' ?>
 
+<!-- POSTINTI PO SITO LINE -->
+
 <?php include 'templates/footer.php' ?>
