@@ -59,19 +59,25 @@
 
 
     if (count($db_movies) !== 0){
-    echo "<div id='sort-selector'>";
-    echo "<p>Sort by:</p>";
-    echo "<form id='sort-form' action='includes_h/view_ratings_h.php' method='POST'>";
-    echo "<select name='sort-by' id='sort-selectors'>";
-    echo "<option value='moviesTitle'>Title</option>";
-    echo "<option value='moviesYear'>Year</option>";
-    echo "<option value='moviesIMDB'>IMDB</option>";
-    echo "<option value='moviesID'>Date added</option>";
-    echo "<option value='rated-by-me'>Rated by me</option>";
-    echo "<option value='not-rated-by-me'>Not rated by me</option>";
-    echo "</select>";
-    echo "</form>";
-    echo "</div>";
+
+    echo "<div id='download-exel-container'>
+    <a id='download-exel-button' href='#'>Download</a>
+    <label id='download-exel-label' >Movies.xlsx</label>
+    </div>"; // href = includes_h\download_h.php
+    
+    echo "<div id='sort-selector'>
+    <p>Sort by:</p>
+    <form id='sort-form' action='includes_h/view_ratings_h.php' method='POST'>
+    <select name='sort-by' id='sort-selectors'>
+    <option value='moviesTitle'>Title</option>
+    <option value='moviesYear'>Year</option>
+    <option value='moviesIMDB'>IMDB</option>
+    <option value='moviesID'>Date added</option>
+    <option value='rated-by-me'>Rated by me</option>
+    <option value='not-rated-by-me'>Not rated by me</option>
+    </select>
+    </form>
+    </div>";
     foreach ($db_movies as $entry){
         $rating = 0;
         $counter = 0;
