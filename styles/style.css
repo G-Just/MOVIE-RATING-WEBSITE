@@ -48,20 +48,6 @@ body::-webkit-scrollbar{
   background-color: rgba(0, 0, 0, 0.8);
   
 }
-/* =========== FOOTER =========== */
-
-#footer {
-  /* display: grid;
-  grid-template-columns: 100px 100px 100px 100px;
-  background: rgba(0, 0, 0, 0.7);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
-  outline: var(--outline);
-  color: white;
-  padding: 10px 50px; */
-  opacity: 0;
-}
 
 /* =========== NAVBAR =========== */
 
@@ -92,6 +78,21 @@ body::-webkit-scrollbar{
   margin-left: auto;
 }
 
+/* =========== FOOTER =========== */
+
+#footer {
+  /* display: grid;
+  grid-template-columns: 100px 100px 100px 100px;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  outline: var(--outline);
+  color: white;
+  padding: 10px 50px; */
+  opacity: 0;
+}
+
 /* =========== ACCOUNT PAGES =========== */
 
 #form-container {
@@ -117,7 +118,7 @@ body::-webkit-scrollbar{
   width: 600px;
 }
 
-#form-itself > h1 {
+#form-header {
   font-size: 3em;
   text-align: center;
   margin-bottom: 0.2em;
@@ -128,13 +129,13 @@ body::-webkit-scrollbar{
   margin-bottom: 1em;
 }
 
-#form-itself > label {
+.input-labels {
   width: 80%;
   margin-top: 1em;
   margin-bottom: 0.2em;
 }
 
-#form-itself > input {
+.input-fields {
   width: 80%;
   padding: 20px;
   height: 1.5em;
@@ -147,12 +148,12 @@ body::-webkit-scrollbar{
   outline: var(--outline);
 }
 
-#form-itself > input:hover,
-#form-itself > input:focus {
+.input-fields:hover,
+.input-fields:focus {
   background-color: rgb(40, 40, 40);
 }
 
-#form-itself > button {
+.form-submit-buttons {
   outline: var(--outline);
   width: 80%;
   margin-top: 15px;
@@ -165,7 +166,11 @@ body::-webkit-scrollbar{
   color: black;
 }
 
-#form-itself > button:hover {
+.signup-button {
+  margin-top: 30px !important;
+}
+
+.form-submit-buttons:hover {
   background-color: var(--accent_2);
 }
 
@@ -180,11 +185,11 @@ body::-webkit-scrollbar{
   right: 80px;
 }
 
-#login-underlabel-container {
+.form-underlabel-container {
   width: 80%;
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 #remember-me-container{
@@ -200,7 +205,6 @@ body::-webkit-scrollbar{
   width: 2em;
   height: 2em;
 }
-
 
 .invalid-email:before {
   content: "Invalid Email!";
@@ -754,7 +758,7 @@ body::-webkit-scrollbar{
   margin: 0;
 }
 
-#profile-page-avatar-container{
+#profile-page-general-container{
   grid-row: 1/2;
   outline: var(--outline);
   padding: 10px;
@@ -763,8 +767,12 @@ body::-webkit-scrollbar{
   gap: 20px;
 }
 
+#profile-page-avatar-container {
+  width: min-content;
+}
+
 #profile-page-avatar{
-  height: 300px;
+  height: 250px;
   outline: var(--outline);
 }
 

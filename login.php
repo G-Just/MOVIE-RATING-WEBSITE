@@ -7,24 +7,24 @@
 <div id="form-container">
     <form id="form-itself" action="includes_h\login_h.php" method="post">
 
-        <h1>Login</h1>
+        <h1 id='form-header'>Login</h1>
         <hr>
 
-        <label id='email'>Email</label>
-        <input type="text" name='email'>
+        <label class='input-labels' id='email'>Email</label>
+        <input class='input-fields' type="text" name='email'>
         
-        <label id='password'>Password</label>
-        <input type="password" name='password'>
+        <label class='input-labels' id='password'>Password</label>
+        <input class='input-fields' type="password" name='password'>
 
         <div id='remember-me-container'>
-                <label for="remember-me">Keep me logged in</label>
+                <label id="remember-me-label">Keep me logged in</label>
                 <input type="checkbox" name="remember" id="remember-me"></input>
             </div>
 
-        <button type="submit" name='submit'>Login</button>
+        <button class='form-submit-buttons' type="submit" name='submit'>Login</button>
 
-        <div id='login-underlabel-container'>
-            <label>Don't have an account? <a href="signup.php">Signup</a></label>
+        <div class='form-underlabel-container'>
+            <label>Don't have an account ? <a href="signup.php">Signup</a></label>
         </div>
         
     </form>

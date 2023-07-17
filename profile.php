@@ -13,14 +13,14 @@
 <!-- <div id='profile-page-container'>
     <div id='profile-content'>
 
-        <div id='profile-page-avatar-container'>
-            <div id="profile-page-avatar-image">
-                <img id='profile-page-avatar-background' src="" alt="">
+        <div id='profile-page-general-container'>
+            <div id="profile-page-avatar-container">
                 <img id='profile-page-avatar' src="media/default_avatar.png" alt="">
+                <input type="file" name="image" id="upload-profile-avatar" accept='.jpg, .jpeg, .png'>
             </div>
             <div id="profile-page-avatar-name">
                 <h1>
-                    <?php // echo $_SESSION['usersUsername']?>
+                    <?php //echo $_SESSION['usersUsername']?>
             </h1>
                 <h2>Title</h2>
                 <p>About</p>
@@ -49,9 +49,9 @@
                 <h2 class='profile-page-movie-list-genre'>Movie genre</h2>
                 <h2 class='profile-page-movie-list-rating'>5</h2>
             </div>
-        </div> -->
+        </div>
 
     </div>
-</div>
+</div> -->
 
 <?php include 'templates/footer.php' ?>

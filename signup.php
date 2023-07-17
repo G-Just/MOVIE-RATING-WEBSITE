@@ -7,24 +7,26 @@
 <div id="form-container">
     <form id="form-itself" action="includes_h\signup_h.php" method="POST">
 
-        <h1>Signup</h1>
+        <h1 id='form-header'>Signup</h1>
         <hr>
 
-        <label id='name'>Username</label>
-        <input type="text" name='username'>
+        <label class='input-labels' id='name'>Username</label>
+        <input class='input-fields' type="text" name='username'>
 
-        <label id='email'>Email</label>
-        <input type="text" name='email'>
+        <label class='input-labels' id='email'>Email</label>
+        <input class='input-fields' type="text" name='email'>
 
-        <label id='password'>Password</label>
-        <input type="password" name='password'>
+        <label class='input-labels' id='password'>Password</label>
+        <input class='input-fields' type="password" name='password'>
 
-        <label id='confirm_password'>Confirm password</label>
-        <input type="password" name='confirm_password'>
+        <label class='input-labels' id='confirm_password'>Confirm password</label>
+        <input class='input-fields' type="password" name='confirm_password'>
 
-        <button type="submit" name='submit' >Signup</button>
+        <button class='form-submit-buttons signup-button' type="submit" name='submit' >Signup</button>
 
-        <label>Already have an account? <a href="login.php">LogIn</a></label>
+        <div class='form-underlabel-container'>
+            <label>Already have an account ? <a href="login.php">Login</a></label>
+        </div>
         
     </form>
 </div>
