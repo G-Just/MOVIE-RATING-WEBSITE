@@ -1,26 +1,8 @@
 # Movie-rating-website
 
-
-#TODO ===================================
-
-# REFACTOR THE CODE TO MAKE IT MORE READABLE + MAKE MORE SENSE
-# ADD TIMESTAMPS ON (PROFILE CREATION + RATING INSTANCE CREATION) *MIGHT BE USEFUL LATER
-# ADD A COMMENT SYSTEM TO ADD MOVIE RATING
-# DESIGN A PROFILE PAGE
-
-#DONE ===================================
-
-# ADD AN OPTION TO REMOVE A RATING
-# INDICATION THAT MOVIE HAS BEEN RATED BY A USER AND WILL BE UPDATED
-# REDIRECT TO UPDATE RATING FROM VIEW PAGE
-# RESTYLE VIEW RATING PAGE
-# VIEW RATINGS SORT
-# MAKE VIEW RATINGS SYSTEM
-# LOGIN SIGN-UP LOGOUT
-# ADD RATING SYSTEM
-# ADD REMEMBER ME CHECKBOX TO LOGIN WITH COOKIES
-
-
-#BUGS TO FIX ===================================
-
-# ADD ASYNC TO FORM SUBMISSION ( USERS CAN SPAM BUTTON AND POST NULL CONTENT BEFORE IT IS LOADED)
+* Uses api's to pull data from a preset content database (OMDB).
+* Allows for rating the selected content and adds the rating with the users ID to the database.
+* Allows for viewing rated content and forms boxes that contain :
+  1. Rating - by calculating the mean of the scores
+  2. Ammount of people who rated this - by calculating the entries in the database
+  3. Who are the people that rated this - pulls the data from saved ratings database and compares the user ID to the users database, then populates the space with the usernames.
