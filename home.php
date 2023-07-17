@@ -4,4 +4,8 @@
 
 <?php include 'templates/navbar.php' ?>
 
+<div>
+    <h1>Headline</h1>
+</div>
+
 <?php include 'templates/footer.php' ?>
