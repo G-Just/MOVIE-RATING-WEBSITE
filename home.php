@@ -4,6 +4,6 @@
 
 <?php include 'templates/navbar.php' ?>
 
-<!-- POSTINTI PO SITO LINE -->
+<!-- RASYTI HTML PO SITO LINE (ISTRINTI SITA LINE) -->
 
 <?php include 'templates/footer.php' ?>
