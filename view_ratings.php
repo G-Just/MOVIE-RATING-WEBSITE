@@ -58,13 +58,7 @@
     }
 
 
-    if (count($db_movies) !== 0){
-
-    echo "<div id='download-exel-container'>
-    <a id='download-exel-button' href='#'>Download</a>
-    <label id='download-exel-label' >Movies.xlsx</label>
-    </div>"; // href = includes_h\download_h.php
-    
+    if (count($db_movies) !== 0){    
     echo "<div id='sort-selector'>
     <p>Sort by:</p>
     <form id='sort-form' action='includes_h/view_ratings_h.php' method='POST'>
