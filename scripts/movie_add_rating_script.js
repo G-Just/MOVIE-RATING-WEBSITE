@@ -118,9 +118,13 @@ if (document.getElementById('add-rating-rate') !== null){
         warned += 1
         button.innerText = 'Are you sure?'
     }
+    
+    title_fetched = document.getElementById('title')
 
     form.addEventListener("submit", (event) => {
         error = false
+        if (title_fetched.innerText === 'Fetching...')
+            error = true
         if (error_circumvent === false && warned === 2)
             event.submit()
         if ((rating_input.value === null && warned === 0) || (rating_input.value === '' && warned === 0)){
