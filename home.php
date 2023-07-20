@@ -4,6 +4,8 @@
 
 <?php include 'templates/navbar.php' ?>
 
-<!--- RASYTI HTML PO SITO LINE (ISTRINTI SITA LINE) --->
+<div>
+    <label>123</label>
+</div>
 
 <?php include 'templates/footer.php' ?>
