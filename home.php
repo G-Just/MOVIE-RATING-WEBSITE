@@ -4,8 +4,4 @@
 
 <?php include 'templates/navbar.php' ?>
 
-<div>
-    <label>123</label>
-</div>
-
 <?php include 'templates/footer.php' ?>
