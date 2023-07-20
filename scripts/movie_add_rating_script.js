@@ -118,7 +118,7 @@ if (document.getElementById('add-rating-rate') !== null){
         warned += 1
         button.innerText = 'Are you sure?'
     }
-
+    
     title_fetched = document.getElementById('title')
 
     form.addEventListener("submit", (event) => {
