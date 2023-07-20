@@ -27,6 +27,7 @@ function enableScroll() {
 }
 
 if (document.getElementById('add-rating-rate') !== null){
+
     current_poster = document.getElementById('selected-result')
     current_poster.innerHTML += localStorage.getItem('selected-poster')
     current_poster.setAttribute('onclick', 'change_movie()')
@@ -111,13 +112,22 @@ if (document.getElementById('add-rating-rate') !== null){
     } catch (error) {
         
     }
+    warned = 0
+    function warn_deletion(){
+        button = document.getElementById('remove-rating-button')
+        warned += 1
+        button.innerText = 'Are you sure?'
+    }
 
     form.addEventListener("submit", (event) => {
         error = false
-        if (error_circumvent === false)
+        if (error_circumvent === false && warned === 2)
             event.submit()
-        if (rating_input.value === null || rating_input.value === ''){
+        if ((rating_input.value === null && warned === 0) || (rating_input.value === '' && warned === 0)){
             document.getElementById('rating').setAttribute('class', 'failed')
+            error = true
+        }
+        if (warned === 1){
             error = true
         }
         if (error === true){

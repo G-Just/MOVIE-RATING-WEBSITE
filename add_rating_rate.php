@@ -69,7 +69,7 @@
                         else if ($movie != false && $ratingExists !== false){
                             echo "<label style='position:absolute;bottom:-35px;font-size:10pt;'>*You already rated this movie, new rating will update the old one</label>";
                             echo "<div id='buttons-container' style='width:100%'><button type='submit' name='submit' id='add-rating-button'>Update rating</button>";
-                            echo "<button style='width: 20%;' name='submit' value='remove' id='remove-rating-button'>Remove rating</button></div>";
+                            echo "<button style='width: 20%;' name='submit' value='remove' id='remove-rating-button' onclick='warn_deletion()'>Remove rating</button></div>";
                         }
                         else if ($movie != false && $ratingExists === false) {
                             echo "<button style='width: 100%;' 'type='submit' name='submit' id='add-rating-button'>Add rating</button>";
