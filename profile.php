@@ -20,20 +20,26 @@
             </div>
             <div id="profile-page-avatar-name">
                 <h1>
-                    <?php //echo $_SESSION['usersUsername']?>
+                    <?php // echo $_SESSION['usersUsername']?>
             </h1>
                 <h2>Title</h2>
                 <p>About</p>
             </div>
         </div>
 
-        <div>
+        <div id='profile-page-details-container'>
+            <h1 id='profile-page-details-header'>Change profile details</h1>
+            <hr>
+            <label for="">Change username</label>
+            <input type="text">
         </div>
 
         <div>
         </div>
 
         <div id='profile-page-movie-list-container'>
+            <h1 id='profile-page-movie-list-header'>Rated content</h1>
+            <hr>
             <div class='profile-page-movie-block'>
                 <h1 class='profile-page-movie-list-title'>Movie name</h1>
                 <h2 class='profile-page-movie-list-genre'>Movie genre</h2>
