@@ -14,8 +14,9 @@ $backgrounds = array();
 foreach (array_values(array_diff(scandir("media/backgrounds"),array('.','..'))) as $background){
     array_push($backgrounds, $background);
 }
+session_start();
 $url = "url(../media/backgrounds/".$backgrounds[array_rand($backgrounds, 1)];
 echo "<body style=background-image:$url)>";
-session_start();
+
 
 
