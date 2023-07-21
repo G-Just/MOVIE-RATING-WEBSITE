@@ -139,13 +139,13 @@ function updateRating($verdict, $title, $type, $year, $comment, $conn){
     $sql = "UPDATE assocs SET assocsUsersVerdict = ?, assocsComment = ? WHERE assocsMoviesID = ? and assocsUsersID = ?;";
     $stmt = mysqli_stmt_init($conn);
     databaseConnectionCheck($stmt, $sql);
-    mysqli_stmt_bind_param($stmt, "isii", $verdict, $comment, $movie['moviesID'], $_SESSION['usersID']);
+    mysqli_stmt_bind_param($stmt, "ssii", $verdict, $comment, $movie['moviesID'], $_SESSION['usersID']);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header('location: ../view_ratings.php?error=content_rating_updated');
 }
 
-function assocsGetByIdUsersId($movieID, $userID, $conn){
+function assocsGetByMoviesIdUsersId($movieID, $userID, $conn){
     $sql = "SELECT * FROM assocs WHERE assocsMoviesID = ? AND assocsUsersID = ? ;";
     $stmt = mysqli_stmt_init($conn);
     databaseConnectionCheck($stmt, $sql);
@@ -163,11 +163,11 @@ function assocsGetByIdUsersId($movieID, $userID, $conn){
 
 function rateMovie($verdict, $title, $type, $year, $comment, $conn){
     $movie = moviesGetByTitleTypeYear($title, $type, $year, $conn);
-    if (assocsGetByIdUsersId($movie['moviesID'], $_SESSION['usersID'], $conn) === false){
+    if (assocsGetByMoviesIdUsersId($movie['moviesID'], $_SESSION['usersID'], $conn) === false){
         $sql = "INSERT INTO assocs (assocsMoviesID, assocsUsersID, assocsUsersVerdict, assocsComment) VALUES (?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
         databaseConnectionCheck($stmt, $sql);
-        mysqli_stmt_bind_param($stmt, "iiis", $movie['moviesID'], $_SESSION['usersID'], $verdict, $comment);
+        mysqli_stmt_bind_param($stmt, "iiss", $movie['moviesID'], $_SESSION['usersID'], $verdict, $comment);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         header('location: ../view_ratings.php?error=content_rated');
@@ -270,7 +270,7 @@ function cookiesSetRemember($conn){
     mysqli_stmt_close($stmt);
 }
 
-function cookiesRemoveCookie($conn){
+function cookiesDeleteCookie($conn){
     unset($_COOKIE['remember']); 
     setcookie('remember', '', -1, '/');
     $sql = "DELETE FROM cookies WHERE cookiesUserID = ?;";

@@ -14,7 +14,7 @@ if (isset($_POST['submit'])){
         cookiesSetRemember($conn);
     }
     if(!$remember){
-        cookiesRemoveCookie($conn);
+        cookiesDeleteCookie($conn);
     }
     header('location: ../home.php?error=logged_in');
 }
