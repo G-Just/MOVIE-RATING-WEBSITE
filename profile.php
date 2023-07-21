@@ -29,9 +29,24 @@
 
         <div id='profile-page-details-container'>
             <h1 id='profile-page-details-header'>Change profile details</h1>
-            <hr>
-            <label for="">Change username</label>
-            <input type="text">
+            <hr id='profile-page-details-hr'>
+
+            <form class='profile-page-details-forms'>
+                <label class='profile-page-details-input-label'>Change username</label>
+                <div class="profile-page-details-input-submit">
+                    <input class='profile-page-details-input' type="text">
+                    <button class='profile-page-details-submit-button' type="submit">Change</button>
+                </div>
+            </form>
+
+            <form class='profile-page-details-forms'>
+                <label class='profile-page-details-input-label'>Change email</label>
+                <div class="profile-page-details-input-submit">
+                    <input class='profile-page-details-input' type="text">
+                    <button class='profile-page-details-submit-button' type="submit">Change</button>
+                </div>
+            </form>
+
         </div>
 
         <div>
