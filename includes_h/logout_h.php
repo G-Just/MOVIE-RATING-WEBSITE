@@ -3,7 +3,7 @@
 require_once 'functions_h.php';
 require_once 'database_handler_h.php';
 
-removeRememberCookie($conn);
+cookiesRemoveCookie($conn);
 
 session_start();
 session_unset();

@@ -30,7 +30,7 @@
         $sort_by = 'moviesID';
     }
 
-    $db_movies = getAllMovies($conn, $sort_by);
+    $db_movies = moviesGetAll($conn, $sort_by);
     echo "<div id='view-ratings-container'>";
 
     $ids = 0;
@@ -42,7 +42,7 @@
         <h5 class='view-type'>".$entry['moviesType']."</h3>
         <h3 class='view-genre'>".$entry['moviesGenre']."</h3>
         <p class='view-imdb'>IMDB rating: ".$entry['moviesIMDB']."</p></div>";
-        echo "<div><p class='view-raters'>Users that rated this [ ".count(getAssocs($conn, $entry['moviesID']))." ] : ".$final_string."</p></div>";
+        echo "<div><p class='view-raters'>Users that rated this [ ".count(assocsGetByMovieId($conn, $entry['moviesID']))." ] : ".$final_string."</p></div>";
         echo "<p class='view-final-verdict-name'>Rating</p>";
         echo "<span class='view-final-verdict-span'>
                 <p class='view-final-verdict'>$verdict</p>
@@ -75,10 +75,10 @@
     foreach ($db_movies as $entry){
         $rating = 0;
         $counter = 0;
-        $db_assocs = getAssocs($conn, $entry['moviesID']);
+        $db_assocs = assocsGetByMovieId($conn, $entry['moviesID']);
         $final = array();
         foreach ($db_assocs as $entries){
-            $username = (userIDCheck($entries['assocsUsersID'], $conn));
+            $username = (usersGetByID($entries['assocsUsersID'], $conn));
             array_push($final, $username['usersUsername']);
         }
         foreach ($db_assocs as $ratings){

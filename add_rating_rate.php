@@ -61,8 +61,8 @@
                         $title = $_GET['content'];
                         $type = $_GET['type'];
                         $year = $_GET['year'];
-                        $movie = movieExistsCheck($title, $type, $year, $conn);
-                        $ratingExists = ratingExistsCheck($movie['moviesID'], $_SESSION['usersID'], $conn);
+                        $movie = moviesGetByTitleTypeYear($title, $type, $year, $conn);
+                        $ratingExists = assocsGetByIdUsersId($movie['moviesID'], $_SESSION['usersID'], $conn);
                         if ($movie === false){
                             echo "<button style='width: 100%;' 'type='submit' name='submit' id='add-rating-button'>Add rating</button>";
                         }

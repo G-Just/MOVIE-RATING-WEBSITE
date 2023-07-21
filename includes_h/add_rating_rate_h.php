@@ -18,9 +18,9 @@ if (isset($_POST['submit'])){
     $delete = $_POST['submit'];
 
     if ($delete === 'remove'){
-        $movieID = movieExistsCheck($title, $type, $year, $conn);
+        $movieID = moviesGetByTitleTypeYear($title, $type, $year, $conn);
         $userID = $_SESSION['usersID'];
-        deleteMovieRating($conn, $movieID['moviesID'], $userID);
+        assocsDeleteByMovieIdUsersId($conn, $movieID['moviesID'], $userID);
     }
     else{
         addMovie($type, $title, $year, $genre, $imdb, $plot, $poster, $conn);

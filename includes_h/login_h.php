@@ -11,10 +11,10 @@ if (isset($_POST['submit'])){
     loginUser($email, $password, $conn);
     $cookie = $_COOKIE['remember'] ?? null;
     if ($remember === 'on' && $cookie === null){
-        setRememberCookie($conn);
+        cookiesSetRemember($conn);
     }
     if(!$remember){
-        removeRememberCookie($conn);
+        cookiesRemoveCookie($conn);
     }
     header('location: ../home.php?error=logged_in');
 }

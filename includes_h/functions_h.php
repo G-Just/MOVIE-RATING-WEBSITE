@@ -9,7 +9,9 @@ function databaseConnectionCheck($stmt, $sql){
     }
 }
 
-function userUsernameExistsCheck($username, $conn) {
+// =============== USERS DATABASE FUNCTIONS ===============
+
+function usersGetByUsername($username, $conn) {
     $sql = "SELECT * FROM users WHERE usersUsername = ?;";
     $stmt = mysqli_stmt_init($conn);
     databaseConnectionCheck($stmt, $sql);
@@ -27,7 +29,7 @@ function userUsernameExistsCheck($username, $conn) {
     mysqli_stmt_close($stmt);
 }
 
-function userEmailExistsCheck($email, $conn) {
+function usersGetByEmail($email, $conn) {
     $sql = "SELECT * FROM users WHERE usersEmail = ?;";
     $stmt = mysqli_stmt_init($conn);
     databaseConnectionCheck($stmt, $sql);
@@ -45,7 +47,7 @@ function userEmailExistsCheck($email, $conn) {
     mysqli_stmt_close($stmt);
 }
 
-function userIDCheck($ID, $conn) {
+function usersGetByID($ID, $conn) {
     $sql = "SELECT * FROM users WHERE usersID = ?;";
     $stmt = mysqli_stmt_init($conn);
     databaseConnectionCheck($stmt, $sql);
@@ -77,7 +79,7 @@ function createUser($email, $username, $password, $conn) {
 }
 
 function loginUser($email, $password, $conn){
-    $user = userEmailExistsCheck($email, $conn);
+    $user = usersGetByEmail($email, $conn);
     if ($user === false){
         header('location: ../login.php?error=wrong-email');
         exit();
@@ -93,7 +95,9 @@ function loginUser($email, $password, $conn){
     $_SESSION['usersEmail'] = $user['usersEmail'];
 }
 
-function movieExistsCheck($title, $type, $year, $conn){
+// =============== MOVIES DATABASE FUNCTIONS ===============
+
+function moviesGetByTitleTypeYear($title, $type, $year, $conn){
     $sql = "SELECT * FROM movies WHERE moviesTitle = ? AND moviesType = ? AND moviesYear = ?;";
     $stmt = mysqli_stmt_init($conn);
     databaseConnectionCheck($stmt, $sql);
@@ -109,8 +113,29 @@ function movieExistsCheck($title, $type, $year, $conn){
     mysqli_stmt_close($stmt);
 }
 
+function addMovie($type, $title, $year, $genre, $imdb, $plot, $poster, $conn){
+    $movie = moviesGetByTitleTypeYear($title, $type, $year, $conn);
+    if ($movie === false){
+        $sql = "INSERT INTO movies (moviesType, moviesTitle, moviesYear, moviesGenre, moviesIMDB, moviesPlot, moviesPoster) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_stmt_init($conn);
+        databaseConnectionCheck($stmt, $sql);
+        mysqli_stmt_bind_param($stmt, "ssssdss", $type, $title, $year, $genre, $imdb, $plot, $poster);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    }
+}
+
+function moviesGetAll($conn, $sortby){
+    $sql = "SELECT * FROM movies ORDER BY ".$sortby.";";
+    $search = mysqli_query($conn, $sql);
+    $result_data = mysqli_fetch_all($search, MYSQLI_ASSOC);
+    return $result_data;
+}
+
+// =============== ASSOCS DATABASE FUNCTIONS ===============
+
 function updateRating($verdict, $title, $type, $year, $comment, $conn){
-    $movie = movieExistsCheck($title, $type, $year, $conn);
+    $movie = moviesGetByTitleTypeYear($title, $type, $year, $conn);
     $sql = "UPDATE assocs SET assocsUsersVerdict = ?, assocsComment = ? WHERE assocsMoviesID = ? and assocsUsersID = ?;";
     $stmt = mysqli_stmt_init($conn);
     databaseConnectionCheck($stmt, $sql);
@@ -120,7 +145,7 @@ function updateRating($verdict, $title, $type, $year, $comment, $conn){
     header('location: ../view_ratings.php?error=content_rating_updated');
 }
 
-function ratingExistsCheck($movieID, $userID, $conn){
+function assocsGetByIdUsersId($movieID, $userID, $conn){
     $sql = "SELECT * FROM assocs WHERE assocsMoviesID = ? AND assocsUsersID = ? ;";
     $stmt = mysqli_stmt_init($conn);
     databaseConnectionCheck($stmt, $sql);
@@ -137,8 +162,8 @@ function ratingExistsCheck($movieID, $userID, $conn){
 }
 
 function rateMovie($verdict, $title, $type, $year, $comment, $conn){
-    $movie = movieExistsCheck($title, $type, $year, $conn);
-    if (ratingExistsCheck($movie['moviesID'], $_SESSION['usersID'], $conn) === false){
+    $movie = moviesGetByTitleTypeYear($title, $type, $year, $conn);
+    if (assocsGetByIdUsersId($movie['moviesID'], $_SESSION['usersID'], $conn) === false){
         $sql = "INSERT INTO assocs (assocsMoviesID, assocsUsersID, assocsUsersVerdict, assocsComment) VALUES (?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
         databaseConnectionCheck($stmt, $sql);
@@ -152,33 +177,14 @@ function rateMovie($verdict, $title, $type, $year, $comment, $conn){
     }
 }
 
-function addMovie($type, $title, $year, $genre, $imdb, $plot, $poster, $conn){
-    $movie = movieExistsCheck($title, $type, $year, $conn);
-    if ($movie === false){
-        $sql = "INSERT INTO movies (moviesType, moviesTitle, moviesYear, moviesGenre, moviesIMDB, moviesPlot, moviesPoster) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $stmt = mysqli_stmt_init($conn);
-        databaseConnectionCheck($stmt, $sql);
-        mysqli_stmt_bind_param($stmt, "ssssdss", $type, $title, $year, $genre, $imdb, $plot, $poster);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-    }
-}
-
-function getAllMovies($conn, $sortby){
-    $sql = "SELECT * FROM movies ORDER BY ".$sortby.";";
-    $search = mysqli_query($conn, $sql);
-    $result_data = mysqli_fetch_all($search, MYSQLI_ASSOC);
-    return $result_data;
-}
-
-function getAllAssocs($conn){
+function assocsGetAll($conn){
     $sql = "SELECT * FROM assocs;";
     $search = mysqli_query($conn, $sql);
     $result_data = mysqli_fetch_all($search, MYSQLI_ASSOC);
     return $result_data;
 }
 
-function getAssocs($conn, $movieID){
+function assocsGetByMovieId($conn, $movieID){
     $sql = "SELECT * FROM assocs WHERE assocsMoviesID = ?;";
     $stmt = mysqli_stmt_init($conn);
     databaseConnectionCheck($stmt, $sql);
@@ -193,7 +199,7 @@ function getAssocs($conn, $movieID){
     mysqli_stmt_close($stmt);
 }
 
-function deleteMovieRating($conn, $movieID, $userID){
+function assocsDeleteByMovieIdUsersId($conn, $movieID, $userID){
     $sql = "DELETE FROM assocs WHERE assocsMoviesID = ? and assocsUsersID = ?;";
     $stmt = mysqli_stmt_init($conn);
     databaseConnectionCheck($stmt, $sql);
@@ -201,8 +207,8 @@ function deleteMovieRating($conn, $movieID, $userID){
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     $msg_type = 'rating';
-    $assocs = getAllAssocs($conn);
-    $movies = getAllMovies($conn, 'moviesID');
+    $assocs = assocsGetAll($conn);
+    $movies = moviesGetAll($conn, 'moviesID');
     $assocsID = array();
     foreach ($assocs as $row) {
         array_push($assocsID, $row['assocsMoviesID']);
@@ -228,7 +234,9 @@ function deleteMovieRating($conn, $movieID, $userID){
     }
 }
 
-function checkForRememberCookie($conn){
+// =============== COOKIES DATABASE FUNCTIONS ===============
+
+function cookiesCheckCookie($conn){
     $cookie = $_COOKIE['remember'] ?? null;
     if($cookie && strstr($cookie, ":")){
         $parts = explode(":", $cookie);
@@ -249,7 +257,7 @@ function checkForRememberCookie($conn){
     return $row;
 }
 
-function setRememberCookie($conn){
+function cookiesSetRemember($conn){
     $expires = time() + ((60*60*24) * 3);
     $token_key = hash('sha256', time());
     $token_value = hash('sha256', 'Yuh@@');
@@ -262,7 +270,7 @@ function setRememberCookie($conn){
     mysqli_stmt_close($stmt);
 }
 
-function removeRememberCookie($conn){
+function cookiesRemoveCookie($conn){
     unset($_COOKIE['remember']); 
     setcookie('remember', '', -1, '/');
     $sql = "DELETE FROM cookies WHERE cookiesUserID = ?;";
