@@ -79,7 +79,8 @@
         $final = array();
         foreach ($db_assocs as $entries){
             $username = (usersGetByID($entries['assocsUsersID'], $conn));
-            array_push($final, $username['usersUsername']);
+            $score = assocsGetByMoviesIdUsersId($entry['moviesID'], $entries['assocsUsersID'], $conn);
+            array_push($final, $username['usersUsername']." - ".$score['assocsUsersVerdict']);
         }
         foreach ($db_assocs as $ratings){
             $counter += 1;
