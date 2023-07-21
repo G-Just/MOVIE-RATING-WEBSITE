@@ -95,13 +95,13 @@
         $final_string = implode(", ", $final);
 
         if ($current_sort === "Rated_by_me"){
-            if (in_array($_SESSION['usersUsername'], $final)) {
+            if (!in_array($_SESSION['usersUsername'], $final)) {
                 CreateMovieDiv($entry, $verdict, $conn, $ids, $final_string, $final);
                 $ids += 1;
             }
         }
         else if ($current_sort === "Not_rated_by_me"){
-            if (!in_array($_SESSION['usersUsername'], $final)) {
+            if (in_array($_SESSION['usersUsername'], $final)) {
                 CreateMovieDiv($entry, $verdict, $conn, $ids, $final_string, $final);
                 $ids += 1;
             }
