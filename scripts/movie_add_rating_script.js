@@ -69,6 +69,9 @@ if (document.getElementById('add-rating-rate') !== null){
     let i = 0
     rating_number = document.getElementById('rating')
     rating_input = document.getElementById('rating-input')
+    function roundToOne(num) {
+        return +(Math.round(num + "e+1")  + "e-1");
+    }
     rating_number.addEventListener('mouseover', e => {
         disableScroll()
     })
@@ -77,29 +80,32 @@ if (document.getElementById('add-rating-rate') !== null){
     })
     rating_number.addEventListener('wheel', e => {
         rating_number.removeAttribute('class')
-        if (e.deltaY < 0 && i<10){
-            i++
-            rating_number.innerText = i
-            rating_input.setAttribute('value', i)
+        if (e.deltaY < 0 && i < 10){
+            i += 0.1
+            i = roundToOne(i)
+            rating_number.innerText = roundToOne(i)
+            rating_input.setAttribute('value', roundToOne(i))
         }
-        if (e.deltaY > 0 && i>1){
-            i--
-            rating_number.innerText = i
-            rating_input.setAttribute('value', i)
+        if (e.deltaY > 0 && i > 0.1){
+            i -= 0.1
+            i = roundToOne(i)
+            rating_number.innerText = roundToOne(i)
+            rating_input.setAttribute('value', roundToOne(i))
         }
-        if (i == 10){
+        chk = rating_number.innerText
+        if (chk >= 9.5){
             rating_number.style = "background-color: rgb(0, 120, 150);font-size: 2em; font-weight: 700;"
         }
-        if (i < 10 && i > 7){
-            rating_number.style = "background-color:rgb(200, 120, 0);font-size: 2em; font-weight: 700;"
-        }
-        if (i <= 7 && i > 5){
+        if (chk >= 7 && chk < 9.5){
             rating_number.style = "background-color: rgb(4, 109, 0);font-size: 2em; font-weight: 700;"
         }
-        if (i <= 5 && i > 1){
+        if (chk >= 5 && chk < 7){
+            rating_number.style = "background-color: rgb(200, 120, 0);font-size: 2em; font-weight: 700;"
+        }
+        if (chk > 1 && chk < 5){
             rating_number.style = "background-color: rgb(90, 0, 0);font-size: 2em; font-weight: 700;"
         }
-        if (i == 1){
+        if (chk <= 1){
             rating_number.style = "background-color: rgb(100, 100, 100);font-size: 2em; font-weight: 700;"
         }
     })

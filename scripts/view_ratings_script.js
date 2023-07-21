@@ -42,22 +42,22 @@ if (document.getElementById('view-rating') !== null){
     rating_number = document.getElementsByClassName('view-final-verdict')
     rating_number_comment = document.getElementsByClassName('view-final-verdict-comment')
         for (let i = 0; i < rating_number.length; i++) {
-        if (rating_number[i].innerText == 10){
+        if (rating_number[i].innerText >= 9.5){
             rating_number[i].style = "color: rgb(0, 120, 150);"
             rating_number_comment[i].style = "color: rgb(0, 120, 150);"
-            rating_number_comment[i].innerText = "S-TIER"
+            rating_number_comment[i].innerText = "GOD-TIER"
         }
-        if (rating_number[i].innerText < 10 && rating_number[i].innerText > 7){
-            rating_number[i].style = "color: rgb(200, 120, 0);"
-            rating_number_comment[i].style = "color: rgb(200, 120, 0);"
-            rating_number_comment[i].innerText = "GOOD"
-        }
-        if (rating_number[i].innerText <= 7 && rating_number[i].innerText > 5){
+        if (rating_number[i].innerText >= 7 && rating_number[i].innerText < 9.5){
             rating_number[i].style = "color: rgb(4, 109, 0);"
             rating_number_comment[i].style = "color: rgb(4, 109, 0);"
+            rating_number_comment[i].innerText = "GOOD"
+        }
+        if (rating_number[i].innerText >= 5 && rating_number[i].innerText < 7){
+            rating_number[i].style = "color: rgb(200, 120, 0);"
+            rating_number_comment[i].style = "color: rgb(200, 120, 0);"
             rating_number_comment[i].innerText = "MID"
         }
-        if (rating_number[i].innerText <= 5 && rating_number[i].innerText > 1){
+        if (rating_number[i].innerText > 1 && rating_number[i].innerText < 5){
             rating_number[i].style = "color: rgb(90, 0, 0);"
             rating_number_comment[i].style = "color: rgb(90, 0, 0);"
             rating_number_comment[i].innerText = "BAD"
