@@ -8,19 +8,22 @@
 ?>
 <?php include 'templates/navbar.php' ?>
 
-<h1 class='empty-message'>Under development !</h1>
+<!-- <h1 class='empty-message'>Under development !</h1> -->
 
-<!-- <div id='profile-page-container'>
+<div id='profile-page-container'>
     <div id='profile-content'>
 
         <div id='profile-page-general-container'>
             <div id="profile-page-avatar-container">
                 <img id='profile-page-avatar' src="media/default_avatar.png" alt="">
-                <input type="file" name="image" id="upload-profile-avatar" accept='.jpg, .jpeg, .png'>
+                <form action="includes_h/profile_h.php" id="profile-page-avatar-form">
+                    <input type="file" name="image" id="upload-profile-avatar" accept='.jpg, .jpeg, .png'>
+                    <button id="upload-profile-avatar-button" type="submit">Change</button>
+                </form>
             </div>
             <div id="profile-page-avatar-name">
                 <h1>
-                    <?php // echo $_SESSION['usersUsername']?>
+                    <?php echo $_SESSION['usersUsername']?>
             </h1>
                 <h2>Title</h2>
                 <p>About</p>
@@ -31,7 +34,7 @@
             <h1 id='profile-page-details-header'>Change profile details</h1>
             <hr id='profile-page-details-hr'>
 
-            <form class='profile-page-details-forms'>
+            <form action="includes_h/profile_h.php" class='profile-page-details-forms'>
                 <label class='profile-page-details-input-label'>Change username</label>
                 <div class="profile-page-details-input-submit">
                     <input class='profile-page-details-input' type="text">
@@ -39,7 +42,7 @@
                 </div>
             </form>
 
-            <form class='profile-page-details-forms'>
+            <form action="includes_h/profile_h.php" class='profile-page-details-forms'>
                 <label class='profile-page-details-input-label'>Change email</label>
                 <div class="profile-page-details-input-submit">
                     <input class='profile-page-details-input' type="text">
@@ -73,6 +76,6 @@
         </div>
 
     </div>
-</div> -->
+</div>
 
 <?php include 'templates/footer.php' ?>

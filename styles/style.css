@@ -778,6 +778,29 @@ body::-webkit-scrollbar{
 #profile-page-avatar{
   height: 250px;
   outline: var(--outline);
+  margin-bottom: 10px;
+}
+
+#upload-profile-avatar {
+  margin-bottom: 10px;
+}
+
+#upload-profile-avatar-button {
+  width: 100%;
+  border: none;
+  outline: var(--outline);
+  background-color: white;
+  border-radius: 10px;
+  height: 2em;
+}
+
+#upload-profile-avatar-button:hover,
+#upload-profile-avatar-button:focus {
+  background-color: var(--accent_2);
+}
+
+#profile-page-avatar-form {
+  width: 100%;
 }
 
 #profile-page-movie-list-container{
