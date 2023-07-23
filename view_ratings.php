@@ -34,7 +34,7 @@
     echo "<div id='view-ratings-container'>";
 
     $ids = 0;
-    function CreateMovieDiv($entry, $verdict, $conn, $ids, $final_string, $final){
+    function CreateMovieDiv($entry, $verdict, $conn, $ids, $final_string, $final, $score){
         echo "<div class='view-ratings-rating'>";
         echo "<img class='view-poster'src=".$entry['moviesPoster']."></img>";
         echo "<h1 id='$ids' class='view-title'>".$entry['moviesTitle']." (".$entry['moviesYear'].")</h1>";
@@ -48,7 +48,7 @@
                 <p class='view-final-verdict'>$verdict</p>
                 <p class='view-final-verdict-comment'></p>
             </span>";
-            if (in_array($_SESSION['usersUsername'], $final)){
+            if (in_array($_SESSION['usersUsername']." - ".$score['assocsUsersVerdict'], $final)){
                 echo "<button class='view-movies-rate-movie-button' onclick='add_rating($ids)'>Update your rating</button>";
             }
             else{
@@ -96,18 +96,18 @@
 
         if ($current_sort === "Rated_by_me"){
             if (in_array($_SESSION['usersUsername']." - ".$score['assocsUsersVerdict'], $final)) {
-                CreateMovieDiv($entry, $verdict, $conn, $ids, $final_string, $final);
+                CreateMovieDiv($entry, $verdict, $conn, $ids, $final_string, $final, $score);
                 $ids += 1;
             }
         }
         else if ($current_sort === "Not_rated_by_me"){
             if (!in_array($_SESSION['usersUsername']." - ".$score['assocsUsersVerdict'], $final)) {
-                CreateMovieDiv($entry, $verdict, $conn, $ids, $final_string, $final);
+                CreateMovieDiv($entry, $verdict, $conn, $ids, $final_string, $final, $score);
                 $ids += 1;
             }
         }
         else{
-            CreateMovieDiv($entry, $verdict, $conn, $ids, $final_string, $final);
+            CreateMovieDiv($entry, $verdict, $conn, $ids, $final_string, $final, $score);
             $ids += 1;
     }
 }
