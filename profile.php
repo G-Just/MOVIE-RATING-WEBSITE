@@ -25,8 +25,9 @@
                 <h1>
                     <?php echo $_SESSION['usersUsername']?>
             </h1>
-                <h2>Title</h2>
-                <p>About</p>
+                <h3>Admin</h3>
+                <hr>
+                <textarea name="" id="" cols="30" rows="10">About</textarea>
             </div>
         </div>
 
