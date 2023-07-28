@@ -30,15 +30,15 @@ body {
   background-position-y: 80%;
 }
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   display: block;
 }
 
 .empty-message {
   position: absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-120%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -120%);
   font-size: 80pt;
   color: white;
   white-space: nowrap;
@@ -46,12 +46,9 @@ body::-webkit-scrollbar{
   outline: var(--outline);
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.8);
-  
 }
 
 /* =========== HOMEPAGE =========== */
-
-
 
 /* =========== NAVBAR =========== */
 
@@ -196,7 +193,7 @@ body::-webkit-scrollbar{
   margin-top: 10px;
 }
 
-#remember-me-container{
+#remember-me-container {
   width: 80%;
   display: flex;
   align-items: center;
@@ -427,7 +424,7 @@ body::-webkit-scrollbar{
 }
 
 #rate-info {
-  margin:15px 0;
+  margin: 15px 0;
   height: 40%;
   display: grid;
   gap: 20px;
@@ -483,12 +480,12 @@ body::-webkit-scrollbar{
   align-items: start;
 }
 
-#verdict-itself-container{
+#verdict-itself-container {
   display: flex;
   flex-direction: row;
   margin-top: auto;
   margin-bottom: auto;
-  gap:20px;
+  gap: 20px;
 }
 
 #verdict-comment {
@@ -516,7 +513,7 @@ body::-webkit-scrollbar{
   height: 130px;
   line-height: 130px;
   background-color: rgb(0, 0, 0);
-  cursor:row-resize;
+  cursor: row-resize;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -529,9 +526,9 @@ body::-webkit-scrollbar{
   font-size: 12pt;
 }
 
-#buttons-container{
+#buttons-container {
   display: flex;
-  gap:20px;
+  gap: 20px;
 }
 
 #add-rating-button {
@@ -614,12 +611,12 @@ body::-webkit-scrollbar{
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(7px);
-  transition: 0.3s cubic-bezier(.92,.31,.6,1.47);
+  transition: 0.3s cubic-bezier(0.92, 0.31, 0.6, 1.47);
 }
 
 .view-ratings-rating:hover {
   background: rgb(0, 0, 0);
-  transition: 0.3s cubic-bezier(.92,.31,.6,1.47);
+  transition: 0.3s cubic-bezier(0.92, 0.31, 0.6, 1.47);
   transform: scale(1.2);
   z-index: 99;
 }
@@ -648,7 +645,7 @@ body::-webkit-scrollbar{
   font-weight: 400;
   grid-column: 2/3;
   text-transform: capitalize;
-  font-size: 1.1em;  
+  font-size: 1.1em;
   margin: 0 !important;
   margin-top: 10px !important;
 }
@@ -762,7 +759,7 @@ body::-webkit-scrollbar{
   margin: 0;
 }
 
-#profile-page-general-container{
+#profile-page-general-container {
   grid-row: 1/2;
   outline: var(--outline);
   padding: 10px;
@@ -775,7 +772,7 @@ body::-webkit-scrollbar{
   width: min-content;
 }
 
-#profile-page-avatar{
+#profile-page-avatar {
   height: 250px;
   outline: var(--outline);
   margin-bottom: 10px;
@@ -803,7 +800,7 @@ body::-webkit-scrollbar{
   width: 100%;
 }
 
-#profile-page-movie-list-container{
+#profile-page-movie-list-container {
   grid-column: 2/3;
   grid-row: 1/4;
   outline: var(--outline);
@@ -814,20 +811,21 @@ body::-webkit-scrollbar{
   gap: 10px;
 }
 
-.profile-page-movie-block{
+.profile-page-movie-block {
   display: grid;
   grid-template-columns: 2fr 2fr;
-  margin-bottom: 20px!important;
+  margin-bottom: 20px !important;
 }
 
-.profile-page-movie-list-rating{
+.profile-page-movie-list-rating {
   grid-column: 2/3;
   grid-row: 1/3;
   text-align: center;
   margin: auto !important;
 }
 
-#profile-page-movie-list-header, #profile-page-details-header {
+#profile-page-movie-list-header,
+#profile-page-details-header {
   font-size: 3em;
   text-align: center;
 }
