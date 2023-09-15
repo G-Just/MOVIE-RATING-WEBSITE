@@ -8,7 +8,7 @@ session_destroy();
 
 require_once 'includes_h/functions_h.php';
 require_once 'includes_h/database_handler_h.php';
-if (cookiesCheckCookie($conn)){
+if (cookiesCheckCookie($conn)) {
     SESSION_start();
     $ID = cookiesCheckCookie($conn)['cookiesUserID'];
     $email = usersGetByID($ID, $conn)['usersEmail'];
