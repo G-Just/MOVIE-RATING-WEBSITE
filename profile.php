@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
 <?php include 'templates/head.php' ?>
-<?php if (!isset($_SESSION['usersID'])){
+<?php if (!isset($_SESSION['usersID'])) {
     header('location: /login.php?error=need_to_log_in');
     exit();
 }
@@ -23,8 +23,8 @@
             </div>
             <div id="profile-page-avatar-name">
                 <h1>
-                    <?php echo $_SESSION['usersUsername']?>
-            </h1>
+                    <?php echo $_SESSION['usersUsername'] ?>
+                </h1>
                 <h3>Admin</h3>
                 <hr>
                 <textarea name="" id="" cols="30" rows="10">About</textarea>

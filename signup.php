@@ -22,12 +22,12 @@
         <label class='input-labels' id='confirm_password'>Confirm password</label>
         <input class='input-fields' type="password" name='confirm_password'>
 
-        <button class='form-submit-buttons signup-button' type="submit" name='submit' >Signup</button>
+        <button class='form-submit-buttons signup-button' type="submit" name='submit'>Signup</button>
 
         <div class='form-underlabel-container'>
             <label>Already have an account ? <a href="login.php">Login</a></label>
         </div>
-        
+
     </form>
 </div>
 

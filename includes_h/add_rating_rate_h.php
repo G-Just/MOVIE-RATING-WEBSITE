@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
     require 'functions_h.php';
     require 'database_handler_h.php';
@@ -17,16 +17,14 @@ if (isset($_POST['submit'])){
 
     $delete = $_POST['submit'];
 
-    if ($delete === 'remove'){
+    if ($delete === 'remove') {
         $movieID = moviesGetByTitleTypeYear($title, $type, $year, $conn);
         $userID = $_SESSION['usersID'];
         assocsDeleteByMovieIdUsersId($conn, $movieID['moviesID'], $userID);
-    }
-    else{
+    } else {
         addMovie($type, $title, $year, $genre, $imdb, $plot, $poster, $conn);
         rateMovie($verdict, $title, $type, $year, $comment, $conn);
     }
-}
-else{
+} else {
     header('location: ../add_rating.php');
 }

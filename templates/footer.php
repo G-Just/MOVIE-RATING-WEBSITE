@@ -7,4 +7,5 @@
 <script src="scripts/general_script.js"></script>
 <script src="scripts/view_ratings_script.js"></script>
 </body>
+
 </html>

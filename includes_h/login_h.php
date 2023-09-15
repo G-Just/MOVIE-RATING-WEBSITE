@@ -1,7 +1,7 @@
 <?php
 
-if (isset($_POST['submit'])){
-    
+if (isset($_POST['submit'])) {
+
     $email = $_POST['email'];
     $password = $_POST['password'];
     $remember = $_POST['remember'];
@@ -10,14 +10,13 @@ if (isset($_POST['submit'])){
     require 'database_handler_h.php';
     loginUser($email, $password, $conn);
     $cookie = $_COOKIE['remember'] ?? null;
-    if ($remember === 'on' && $cookie === null){
+    if ($remember === 'on' && $cookie === null) {
         cookiesSetRemember($conn);
     }
-    if(!$remember){
+    if (!$remember) {
         cookiesRemoveCookie($conn);
     }
     header('location: ../home.php?error=logged_in');
-}
-else{
+} else {
     header('location: ../login.php');
 }
