@@ -11,5 +11,5 @@
 * Uses Mysql database to save all the data that users interacted with.
 * Login/register validation etc.
 
-Site published at -> https://movie-rating.000.pe/home.php
+Site published at -> https://movie-rating.000.pe
 NOTE: Sketchy free hosting website (not recommended to use real emails to sign up)
